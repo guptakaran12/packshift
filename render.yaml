@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: packshift
+    env: docker
+    plan: free
+    repo: https://github.com/guptakaran12/packshift
+    branch: main
+    dockerfilePath: Dockerfile
+    buildFilter:
+      paths:
+        - Dockerfile
+    autoDeploy: true
+    healthCheckPath: /
