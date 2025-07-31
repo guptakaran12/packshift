@@ -1,27 +1,28 @@
 FROM php:8.2-fpm
 
-# Dependencies install कर रहे हैं
+# System dependencies
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libonig-dev libxml2-dev libzip-dev libpng-dev \
     && docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd zip
 
-# Composer copy कर रहे हैं
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Code के लिए working directory
+# Set working directory
 WORKDIR /var/www
 
-# Code copy कर रहे हैं
+# Copy app code
 COPY . .
 
-# Laravel की dependencies install कर रहे हैं
+# Install PHP dependencies (Laravel)
 RUN composer install --no-dev --optimize-autoloader
 
-# Permission सेट कर रहे हैं
+# Set file permissions
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
+# Expose port
 EXPOSE 8000
 
-# Server चालू करने का command
-CMD php artisan serve --host=0.0.0.0 --port=8000
+# Serve app from public directory
+CMD php -d variables_order=EGPCS -S 0.0.0.0:8000 -t public
