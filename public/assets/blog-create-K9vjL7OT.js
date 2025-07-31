@@ -1,0 +1,1 @@
+(function(){const e=document.querySelector(".blog-images");FilePond.create(e),flatpickr("#publish-date",{}),flatpickr("#publish-time",{enableTime:!0,noCalendar:!0,dateFormat:"H:i"}),new Choices("#blog-tags",{allowHTML:!0,removeItemButton:!0})})();
