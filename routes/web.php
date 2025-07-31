@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\SocialLoginController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\Dashboard\Quotation\QuotationController;
 use App\Http\Controllers\Dashboard\DashboardController;
 
 
@@ -28,5 +30,8 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-
+Route::middleware(['auth','prevent-back-history'])->group(function () {
+    Route::get('/quotations/create', [QuotationController::class, 'quotationCreatePage'])->name('quotations.create');
+    Route::post('/location/data/', [LocationController::class, 'get'])->name('location.get');
+});
 

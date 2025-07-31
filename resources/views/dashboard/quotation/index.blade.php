@@ -1,0 +1,1171 @@
+@extends('dashboard.layout')
+@section('title', 'Quotation Create')
+@section('content')
+    <!-- Start::app-content -->
+    <div class="main-content app-content">
+        <div class="container-fluid">
+            <!-- Page Header -->
+            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+                <div class="ms-md-1 mb-1 mb-md-0 ms-0">
+                    <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('Quotation') }}</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('Create Quotation') }}</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Header Close -->
+
+            <div class="row">
+                <div class="col-xxl-9 col-xl-12">
+                    <div class="card custom-card">
+                        <div class="card-header d-md-flex d-block">
+                            <div class="h5 mb-0 d-sm-flex d-block align-items-center">
+                                <div>
+                                    <img src="{{ asset('images/logo3.png') }}" alt="Logo"
+                                        style="height: 40px; width: 40px; border-radius: 8px; object-fit: contain; background: white; padding: 4px;  border-radius: 50%; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); border: 1px solid #ccc;">
+
+
+                                </div>
+                                <div class="ms-sm-2 ms-0 mt-sm-0 mt-2">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Quotation Title"
+                                        name="quotation_title" id="quotation_title" autofocus maxlength="50">
+                                </div>
+                                <div class="mx-2">:</div>
+                                <div class="mt-sm-0 mt-2">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Quotation ID"
+                                        name="quotation_id" id="quotation_id" maxlength="50"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                                </div>
+                            </div>
+                            <div class="ms-auto mt-md-0 mt-2">
+                                <button class="btn btn-sm btn-primary me-2">Save As PDF<i
+                                        class="ri-file-pdf-line ms-1 align-middle d-inline-block"></i></button>
+                                <button class="btn btn-sm btn-icon btn-secondary-light me-2"><i
+                                        class="bi bi-plus-lg"></i></button>
+                                <button class="btn btn-sm btn-icon btn-success-light me-2"><i
+                                        class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row gy-3">
+                                <!-- General Details: -->
+                                <p class="fw-bold mb-1">
+                                    {{ __('General Details:') }}
+                                </p>
+
+                                <div class="col-xl-4">
+                                    <!-- Customer Name Start-->
+                                    <label for="customer_name" class="form-label">{{ __('Customer Name') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control border mb-2" id="customer_name"
+                                        name="customer_name" maxlength="60" placeholder="Customer Name">
+                                    <span class="text-danger d-block my-2" id="customer_name_error"></span>
+                                    <!-- Customer Name End-->
+
+                                    <!-- Customer PAN Start-->
+                                    <label for="pan_number" class="form-label">{{ __('Customer PAN Number') }}</label>
+                                    <input type="text" class="form-control border mb-2" id="pan_number" name="pan_number"
+                                        maxlength="10" placeholder="Customer PAN Number">
+                                    <span class="text-danger d-block my-2" id="pan_number_error"></span>
+                                    <!-- Customer PAN End-->
+
+                                    <!-- Customer Address Start-->
+                                    <label for="street" class="form-label">{{ __('Customer Address') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <textarea class="form-control" id="street" name="street" maxlength="200" rows="1"></textarea>
+                                    <span class="text-danger d-block my-2" id="street_error"></span>
+                                    <!-- Customer Address End-->
+                                </div>
+
+                                <div class="col-xl-4 ms-auto">
+                                    <!-- Customer Phone Start-->
+                                    <label for="customer_phone" class="form-label">{{ __('Customer Phone') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="customer_phone"
+                                        name="customer_phone" maxlength="10" placeholder="Customer Phone"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                                    <span class="text-danger d-block my-2" id="customer_phone_error"></span>
+                                    <!-- Customer Phone End-->
+
+                                    <!-- Customer Email Start-->
+                                    <label for="customer_email" class="form-label">{{ __('Customer Email') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="email" class="form-control border mb-2" id="customer_email"
+                                        name="customer_email" maxlength="80" placeholder="Customer Email">
+                                    <span class="text-danger d-block my-2" id="customer_email_error"></span>
+                                    <!-- Customer Email End-->
+
+                                    <!-- Customer Zip Code Start-->
+                                    <label for="customer_zip_code" class="form-label">{{ __('Zip Code') }} <span
+                                            class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control border mb-2" id="customer_zip_code"
+                                        name="customer_zip_code" maxlength="6" placeholder="Customer Zip Code"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)">
+                                    <span class="text-danger d-block my-2" id="customer_zip_code_error"></span>
+                                    <!-- Customer Zip Code End-->
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <!-- Customer GST Start-->
+                                    <label for="gst_number" class="form-label">{{ __('Customer GST Number') }}</label>
+                                    <input type="text" class="form-control border mb-2" id="gst_number"
+                                        name="gst_number" maxlength="15" placeholder="Customer GST Number">
+                                    <span class="text-danger d-block my-2" id="gst_number_error"></span>
+                                    <!-- Customer GST Start-->
+
+                                    <!-- Customer Client Type Start-->
+                                    <label for="client_type" class="form-label">{{ __('Client Type') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="client_type" name="client_type">
+                                        <option value="">{{ __('Select Client Type') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::INDIVIDUAL->value,
+                                                    \App\Enums\MasterOption::COMPANY->value,
+                                                    \App\Enums\MasterOption::GOVERNMENT->value,
+                                                    \App\Enums\MasterOption::NGO->value,
+                                                    \App\Enums\MasterOption::BUILDER->value,
+                                                    \App\Enums\MasterOption::CORPORATE->value,
+                                                    \App\Enums\MasterOption::STARTUP->value,
+                                                    \App\Enums\MasterOption::SCHOOL->value,
+                                                    \App\Enums\MasterOption::OTHER->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="client_type_error"></span>
+                                    <!-- Customer Client Type End-->
+
+                                    <!-- Country Start -->
+                                    <label for="country" class="form-label">{{ __('Country') }} <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control border" id="country" name="country"
+                                        onchange="loadLocations(this.value,'#state');">
+                                        <option value="">{{ __('Select Country') }}</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="country_error"></span>
+                                    <!-- Country End -->
+                                </div>
+
+                                <!-- State Start -->
+                                <div class="col-xl-4 my-1">
+                                    <label for="state" class="form-label">{{ __('State') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="state" name="state"
+                                        onchange="loadLocations(this.value,'#cities');">
+                                        <option value="">{{ __('Select State') }}</option>
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="state_error"></span>
+                                </div>
+                                <!-- State End -->
+
+                                <!-- City Start -->
+                                <div class="col-xl-4 my-1">
+                                    <label for="city" class="form-label">{{ __('City') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="cities" name="cities">
+                                        <option value="">{{ __('Select City') }}</option>
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="city_error"></span>
+                                </div>
+                                <!-- City End -->
+
+                                <!-- DOB Start -->
+                                <div class="col-xl-4 my-1">
+                                    <label for="dob" class="form-label">
+                                        {{ __('Date Of Birth(DOB)') }}<span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" class="form-control border" placeholder="Choose date"
+                                        name="dob" id="dob">
+                                    <span class="text-danger d-block my-2" id="dob_error"></span>
+                                </div>
+                                <!-- DOB End -->
+
+                                <!-- Quotation Details: -->
+                                <p class="fw-bold mb-1">
+                                    {{ __('Quotation Details:') }}
+                                </p>
+                                <div class="col-xl-4">
+                                    <!-- Quotation Purpose Start: -->
+                                    <label for="quotation_purpose" class="form-label">{{ __('Quotation Purpose') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <textarea class="form-control" id="quotation_purpose" name="quotation_purpose" maxlength="150" rows="1"></textarea>
+                                    <span class="text-danger d-block my-2" id="quotation_purpose_error"></span>
+                                    <!-- Quotation Purpose End: -->
+
+                                    <!-- Valid Date Start: -->
+                                    <label for="valid_date" class="form-label">{{ __('Valid Till') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" class="form-control border mb-2" id="valid_date"
+                                        name="valid_date" placeholder="Email">
+                                    <span class="text-danger d-block my-2" id="valid_date_error"></span>
+                                    <!-- Valid Date End: -->
+                                </div>
+
+                                <div class="col-xl-4 ms-auto">
+                                    <!-- Salesperson Name Start: -->
+                                    <label for="salesperson_name" class="form-label">{{ __('Salesperson Name') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control border mb-2" id="salesperson_name"
+                                        name="salesperson_name" maxlength="60" placeholder="Salesperson Name">
+                                    <span class="text-danger d-block my-2" id="salesperson_name_error"></span>
+                                    <!-- Salesperson Name End: -->
+
+                                    <!-- Quotation Status Start: -->
+                                    <label for="quotation_status" class="form-label">{{ __('Quotation Status') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="quotation_status" name="quotation_status">
+                                        <option value="">{{ __('Select Status') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::QUOTATION_DRAFT->value,
+                                                    \App\Enums\MasterOption::QUOTATION_SENT->value,
+                                                    \App\Enums\MasterOption::QUOTATION_ACCEPTED->value,
+                                                    \App\Enums\MasterOption::QUOTATION_REJECTED->value,
+                                                    \App\Enums\MasterOption::QUOTATION_EXPIRED->value,
+                                                ]))
+                                                {{-- Only Quotation Status --}}
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="city_error"></span>
+                                    <!-- Quotation Status End: -->
+                                </div>
+
+                                <!-- Quotation Date Start: -->
+                                <div class="col-xl-4">
+                                    <label for="quotation_date" class="form-label">
+                                        {{ __('Quotation Date') }} <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" class="form-control border mb-2" id="quotation_date"
+                                        name="quotation_date" placeholder="Quotation Date">
+                                    <span class="text-danger d-block my-2" id="quotation_date_error"></span>
+                                </div>
+                                <!-- Quotation Date End: -->
+
+                                <!-- Move From/To -->
+                                <div class="row">
+                                    <!-- Move From Start -->
+                                    <div class="col-md-6">
+                                        <p class="fw-bold mb-2 my-2">{{ __('Move From:') }}</p>
+
+                                        <!-- Country -->
+                                        <label for="move_from_country" class="form-label">{{ __('Country') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control border" id="move_from_country"
+                                            name="move_from_country"
+                                            onchange="loadLocations(this.value,'#move_from_state');">
+                                            <option value="">{{ __('Select Country') }}</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_from_country_error"></span>
+
+                                        <!-- State -->
+                                        <label for="move_from_state" class="form-label">{{ __('State') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control border" id="move_from_state" name="move_from_state"
+                                            onchange="loadLocations(this.value,'#move_from_city');">
+                                            <option value="">{{ __('Select State') }}</option>
+                                            <option value="">{{ __('Gujrat') }}</option>
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_from_state_error"></span>
+
+                                        <!-- City -->
+                                        <label for="move_from_city" class="form-label">{{ __('City') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control border" id="move_from_city" name="move_from_city">
+                                            <option value="">{{ __('Select City') }}</option>
+                                            <option value="">{{ __('Ahmadabad') }}</option>
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_from_city_error"></span>
+
+                                        <!-- Address -->
+                                        <label for="move_from_address" class="form-label">{{ __('Address') }} <span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="move_from_address" name="move_from_address" maxlength="200" rows="1"></textarea>
+                                        <span class="text-danger d-block my-2" id="move_from_address_error"></span>
+                                    </div>
+                                    <!-- Move From End -->
+
+                                    <!-- Move To Start -->
+                                    <div class="col-md-6">
+                                        <p class="fw-bold mb-2 my-2">{{ __('Move To:') }}</p>
+
+                                        <!-- Country -->
+                                        <label for="move_to_country" class="form-label">{{ __('Country') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control border" id="move_to_country" name="move_to_country"
+                                            onchange="loadLocations(this.value,'#move_to_state');">
+                                            <option value="">{{ __('Select Country') }}</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_to_country_error"></span>
+
+                                        <!-- State -->
+                                        <label for="move_to_state" class="form-label">{{ __('State') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control border" id="move_to_state" name="move_to_state"
+                                            onchange="loadLocations(this.value,'#move_to_city');">
+                                            <option value="">{{ __('Select State') }}</option>
+                                            <option value="">{{ __('Gujrat') }}</option>
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_to_state_error"></span>
+
+                                        <!-- City -->
+                                        <label for="move_to_city" class="form-label">{{ __('City') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control border" id="move_to_city" name="move_to_city">
+                                            <option value="">{{ __('Select City') }}</option>
+                                            <option value="">{{ __('Ahmadabad') }}</option>
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_to_city_error"></span>
+
+                                        <!-- Address -->
+                                        <label for="move_to_address" class="form-label">{{ __('Address') }} <span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="move_to_address" name="move_to_address" maxlength="200" rows="1"></textarea>
+                                        <span class="text-danger d-block my-2" id="move_to_address_error"></span>
+                                    </div>
+                                    <!-- Move To End -->
+                                </div>
+                                <!-- Move From/To -->
+
+                                <!-- Service Details: -->
+                                <p class="fw-bold mb-1">
+                                    {{ __('Service Details:') }}
+                                </p>
+                                <div class="col-xl-4">
+                                    <!-- Service Type Start: -->
+                                    <label for="service_type" class="form-label">{{ __('Service Type') }} <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control border" id="service_type" name="service_type">
+                                        <option value="">{{ __('Select Type') }}</option>
+                                        @foreach (App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    App\Enums\MasterOption::SERVICE_LOCAL_HOME->value,
+                                                    App\Enums\MasterOption::SERVICE_INTERCITY_HOME->value,
+                                                    App\Enums\MasterOption::SERVICE_OFFICE->value,
+                                                    App\Enums\MasterOption::SERVICE_VEHICLE->value,
+                                                    App\Enums\MasterOption::SERVICE_WAREHOUSE->value,
+                                                    App\Enums\MasterOption::SERVICE_INTERNATIONAL->value,
+                                                    App\Enums\MasterOption::SERVICE_STORAGE->value,
+                                                    App\Enums\MasterOption::SERVICE_PET->value,
+                                                    App\Enums\MasterOption::SERVICE_AC_INSTALL->value,
+                                                    App\Enums\MasterOption::SERVICE_PACK_ONLY->value,
+                                                    App\Enums\MasterOption::SERVICE_UNPACK_ONLY->value,
+                                                    App\Enums\MasterOption::SERVICE_OTHER->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="currency_error"></span>
+                                    <!-- Service Type End: -->
+
+                                    <!-- Shifting End Date Start : -->
+                                    <label for="shifting_end_date" class="form-label my-2">{{ __('Shifting End Date') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" class="form-control border mb-2" id="shifting_end_date"
+                                        name="shifting_end_date">
+                                    <span class="text-danger d-block my-2" id="shifting_end_date_error"></span>
+                                    <!-- Shifting End Date End : -->
+
+                                    <!-- Goods Type Start: -->
+                                    <label for="goods_type" class="form-label">{{ __('Goods Type') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="goods_type" name="goods_type">
+                                        <option value="">{{ __('Select Goods Type') }}</option>
+                                        @foreach (App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    App\Enums\MasterOption::GOODS_HOUSEHOLD->value,
+                                                    App\Enums\MasterOption::GOODS_OFFICE->value,
+                                                    App\Enums\MasterOption::GOODS_ELECTRONICS->value,
+                                                    App\Enums\MasterOption::GOODS_INDUSTRIAL->value,
+                                                    App\Enums\MasterOption::GOODS_DOCUMENTS->value,
+                                                    App\Enums\MasterOption::GOODS_VEHICLE->value,
+                                                    App\Enums\MasterOption::GOODS_FRAGILE->value,
+                                                    App\Enums\MasterOption::GOODS_FURNITURE->value,
+                                                    App\Enums\MasterOption::GOODS_MIXED->value,
+                                                    App\Enums\MasterOption::GOODS_OTHER->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="goods_type_error"></span>
+                                    <!-- Goods Type End: -->
+
+                                    <!-- Shifting Distance Start: -->
+                                    <label for="shifting_distance"
+                                        class="form-label my-2">{{ __('Shifting Distance (in KM)') }}</label>
+                                    <input type="tel" class="form-control border mb-2" id="shifting_distance"
+                                        name="shifting_distance" placeholder="e.g. 25"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="4">
+                                    <span class="text-danger d-block my-2" id="shifting_distance_error"></span>
+                                    <!-- Shifting Distance End: -->
+                                </div>
+
+                                <div class="col-xl-4 ms-auto">
+                                    <!-- Move Type Start: -->
+                                    <label for="move_type" class="form-label">{{ __('Move Type') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="move_type" name="move_type">
+                                        <option value="">{{ __('Select Move Type') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::MOVE_HOME->value,
+                                                    \App\Enums\MasterOption::MOVE_OFFICE->value,
+                                                    \App\Enums\MasterOption::MOVE_COMMERCIAL->value,
+                                                    \App\Enums\MasterOption::MOVE_VEHICLE->value,
+                                                    \App\Enums\MasterOption::MOVE_WAREHOUSE->value,
+                                                    \App\Enums\MasterOption::MOVE_FURNITURE->value,
+                                                    \App\Enums\MasterOption::MOVE_LOCAL->value,
+                                                    \App\Enums\MasterOption::MOVE_INTERCITY->value,
+                                                    \App\Enums\MasterOption::MOVE_INTERNATIONAL->value,
+                                                    \App\Enums\MasterOption::MOVE_OTHER->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="move_type_error"></span>
+                                    <!-- Move Type End: -->
+
+                                    <!-- Vehicle Type Start: -->
+                                    <label for="vehicle_type" class="form-label my-2">{{ __('Vehicle Type') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="vehicle_type" name="vehicle_type">
+                                        <option value="">{{ __('Select Vehicle Type') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::VEHICLE_BIKE->value,
+                                                    \App\Enums\MasterOption::VEHICLE_SCOOTER->value,
+                                                    \App\Enums\MasterOption::VEHICLE_HATCHBACK->value,
+                                                    \App\Enums\MasterOption::VEHICLE_SEDAN->value,
+                                                    \App\Enums\MasterOption::VEHICLE_SUV->value,
+                                                    \App\Enums\MasterOption::VEHICLE_THREE_WHEELER->value,
+                                                    \App\Enums\MasterOption::VEHICLE_TATA_ACE->value,
+                                                    \App\Enums\MasterOption::VEHICLE_PICKUP->value,
+                                                    \App\Enums\MasterOption::VEHICLE_TRUCK_14FT->value,
+                                                    \App\Enums\MasterOption::VEHICLE_TRUCK_17FT->value,
+                                                    \App\Enums\MasterOption::VEHICLE_CONTAINER->value,
+                                                    \App\Enums\MasterOption::VEHICLE_TRAILER->value,
+                                                    \App\Enums\MasterOption::VEHICLE_OTHER->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="vehicle_type_error"></span>
+                                    <!-- Vehicle Type End: -->
+
+                                    <!-- Pickup Floor Start: -->
+                                    <label for="pickup_floor" class="form-label ">{{ __('Pickup Floor') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="pickup_floor" name="pickup_floor">
+                                        <option value="">{{ __('Select Pickup Floor') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::FLOOR_GROUND->value,
+                                                    \App\Enums\MasterOption::FLOOR_1->value,
+                                                    \App\Enums\MasterOption::FLOOR_2->value,
+                                                    \App\Enums\MasterOption::FLOOR_3->value,
+                                                    \App\Enums\MasterOption::FLOOR_4->value,
+                                                    \App\Enums\MasterOption::FLOOR_5->value,
+                                                    \App\Enums\MasterOption::FLOOR_6_PLUS->value,
+                                                    \App\Enums\MasterOption::FLOOR_BASEMENT->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="pickup_floor_error"></span>
+                                    <!-- Pickup Floor End: -->
+
+                                    <!-- Insurance Start: -->
+                                    <label for="insurance" class="form-label my-2">{{ __('Is Insurance Required?') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="insurance" name="insurance">
+                                        <option value="">{{ __('Select Option') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::INSURANCE_FULL->value,
+                                                    \App\Enums\MasterOption::INSURANCE_PARTIAL->value,
+                                                    \App\Enums\MasterOption::INSURANCE_NO->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="insurance_error"></span>
+                                    <!-- Insurance End: -->
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <!-- Shifting Start Date Start: -->
+                                    <label for="shifting_start_date" class="form-label">{{ __('Shifting Start Date') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" class="form-control border mb-2" id="shifting_start_date"
+                                        name="shifting_start_date">
+                                    <span class="text-danger d-block my-2" id="shifting_start_date_error"></span>
+                                    <!-- Shifting Start Date Start: -->
+
+                                    <!-- Labour Count Start: -->
+                                    <label for="labour_count" class="form-label">{{ __('Labour Count') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="labour_count" name="labour_count">
+                                        <option value="">{{ __('Select Labour Count') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::LABOUR_1->value,
+                                                    \App\Enums\MasterOption::LABOUR_2->value,
+                                                    \App\Enums\MasterOption::LABOUR_3->value,
+                                                    \App\Enums\MasterOption::LABOUR_4->value,
+                                                    \App\Enums\MasterOption::LABOUR_5->value,
+                                                    \App\Enums\MasterOption::LABOUR_6_PLUS->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="labour_count_error"></span>
+                                    <!-- Labour Count End: -->
+
+                                    <!-- Pickup Lift Start: -->
+                                    <label for="pickup_lift" class="form-label my-2">{{ __('Pickup Lift Available') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-control border" id="pickup_lift" name="pickup_lift">
+                                        <option value="">{{ __('Select Pickup Lift') }}</option>
+                                        @foreach (\App\Enums\MasterOption::cases() as $option)
+                                            @if (in_array($option->value, [
+                                                    \App\Enums\MasterOption::PICKUP_LIFT_YES->value,
+                                                    \App\Enums\MasterOption::PICKUP_LIFT_NO->value,
+                                                ]))
+                                                <option value="{{ $option->value }}">
+                                                    {{ $option->label() }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger d-block my-2" id="pickup_lift_error"></span>
+                                    <!-- Pickup Lift End: -->
+                                </div>
+
+                                <!-- Service Charges: -->
+                                <p class="fw-bold mb-1">
+                                    {{ __('Service Charges:') }}
+                                </p>
+                                <div class="col-xl-4">
+                                    <!-- Base Charges Start: -->
+                                    <label for="base_charges" class="form-label">{{ __('Base Charges') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="base_charges"
+                                        name="base_charges" placeholder="Base Charges" maxlength="7"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                    <span class="text-danger d-block my-2" id="base_charges_error"></span>
+                                    <!-- Base Charges End: -->
+
+                                    <!-- Unloading Charges Start: -->
+                                    <label for="unloading_charges" class="form-label">{{ __('Unloading Charges') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="unloading_charges"
+                                        name="unloading_charges" placeholder="Unloading Charges" maxlength="6"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                    <span class="text-danger d-block my-2" id="unloading_charges_error"></span>
+                                    <!-- Unloading Charges End: -->
+
+                                    <!-- Discount Start: -->
+                                    <label for="discount" class="form-label my-2">{{ __('Discount') }}</label>
+                                    <input type="tel" class="form-control border mb-2" id="discount"
+                                        name="discount" placeholder="Discount"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="5">
+                                    <span class="text-danger d-block my-2" id="discount_error"></span>
+                                    <!-- Discount End: -->
+                                </div>
+
+                                <div class="col-xl-4 ms-auto">
+                                    <!-- Packing Charges Start: -->
+                                    <label for="packing_charges" class="form-label">{{ __('Packing Charges') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="packing_charges"
+                                        name="packing_charges" placeholder="Packing Charges"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
+                                    <span class="text-danger d-block my-2" id="packing_charges_error"></span>
+                                    <!-- Packing Charges End: -->
+
+                                    <!-- Transportation Charge Start: -->
+                                    <label for="transportation_charges"
+                                        class="form-label">{{ __('Transportation Charges') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="transportation_charges"
+                                        name="transportation_charges" placeholder="Transportation Charges"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
+                                    <span class="text-danger d-block my-2" id="transportation_charges_error"></span>
+                                    <!-- Transportation Charge End: -->
+
+                                    <!-- Insurance Amount Start: -->
+                                    <label for="insurance_amount"
+                                        class="form-label my-2">{{ __('Insurance Amount') }}</label>
+                                    <input type="tel" class="form-control border mb-2" id="insurance_amount"
+                                        name="insurance_amount" placeholder="Insurance Amount"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="7">
+                                    <span class="text-danger d-block my-2" id="insurance_amount_error"></span>
+                                    <!-- Insurance Amount End: -->
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <!-- Loading Charges Start: -->
+                                    <label for="loading_chargers" class="form-label">{{ __('Loading Charges') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="loading_chargers"
+                                        name="loading_chargers" placeholder="Loading Charges"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
+                                    <span class="text-danger d-block my-2" id="loading_chargers_error"></span>
+                                    <!-- Loading Charges End: -->
+
+                                    <!-- GST Start: -->
+                                    <label for="from_gst" class="form-label">{{ __('GST (%)') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="tel" class="form-control border mb-2" id="gst" name="gst"
+                                        placeholder="GST%"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '',),calculateAllTotals();"
+                                        maxlength="2">
+                                    <span class="text-danger d-block my-2" id="gst_error"></span>
+                                    <!--GST End: -->
+
+                                    <!-- Servise Total Start: -->
+                                    <label for="servise_total"
+                                        class="form-label my-2">{{ __('Servise Total Amount') }}</label>
+                                    <input type="tel" class="form-control border mb-2" id="servise_total"
+                                        name="servise_total" placeholder="Servise Total"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" readonly>
+                                    <span class="text-danger d-block my-2" id="servise_total_error"></span>
+                                    <!--Servise Total End: -->
+                                </div>
+
+                                <div class="col-xl-12">
+                                    <p class="fw-bold mb-1">
+                                        {{ __('Item/Particulars Details:') }} <span id="item-count"
+                                            class="text-primary">(Items: 1)</span>
+                                    </p>
+                                    <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+                                        <div id="item_warning_msg" style="display:none;"></div>
+                                        <table class="table nowrap text-nowrap border mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('ITEM') }} <span class="text-danger">*</span></th>
+                                                    <th>{{ __('DESCRIPTION') }}</th>
+                                                    <th>{{ __('Unit Price') }} <span class="text-danger">*</span></th>
+                                                    <th>{{ __('QUANTITY') }} <span class="text-danger">*</span></th>
+                                                    <th>{{ __('TOTAL') }}</th>
+                                                    <th>{{ __('ACTION') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="item_table">
+                                                <tr class="item-row">
+                                                    <td>
+                                                        <input type="text" class="form-control item_name"
+                                                            name="item_name[]" maxlength="70" placeholder="Item Name">
+                                                        <span class="text-danger d-block my-2"
+                                                            id="item_name_error"></span>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control description" name="item_description" maxlength="200" rows="1"
+                                                            placeholder="Description"></textarea>
+                                                        <span class="text-danger d-block my-2"
+                                                            id="item_description_error"></span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="tel" class="form-control unit_price"
+                                                            name="unit_price" placeholder="Price" maxlength="10"
+                                                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); calculateAllTotals();">
+                                                        <span class="text-danger d-block my-2"
+                                                            id="unit_price_error"></span>
+                                                    </td>
+                                                    <td class="invoice-quantity-container">
+                                                        <div class="input-group border rounded flex-nowrap">
+                                                            <!-- Minus Button -->
+                                                            <button
+                                                                class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-minus">
+                                                                <i class="ri-subtract-line"></i>
+                                                            </button>
+                                                            <input type="text"
+                                                                class="form-control form-control-sm border-0 text-center w-100 qty_input disabled-look"
+                                                                aria-label="quantity" value="1" readonly>
+                                                            <!-- Plus Button -->
+                                                            <button
+                                                                class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-plus">
+                                                                <i class="ri-add-line"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="tel"
+                                                            class="form-control total_item disabled-look"
+                                                            placeholder="Total" name="total_item" type="text"
+                                                            value="0" readonly>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-icon btn-danger-light"
+                                                            onclick="removeRow(this)"><i
+                                                                class="ri-delete-bin-5-line"></i></button>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td colspan="6" class="border-bottom-0">
+                                                        <a class="btn btn-light" href="javascript:void(0);"
+                                                            onclick="addItemInputes();">
+                                                            <i class="bi bi-plus-lg"></i>
+                                                            {{ __('Add Item') }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4"></td>
+                                                    <td colspan="2">
+                                                        <table class="table table-sm text-nowrap mb-0 table-borderless">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="fw-semibold">
+                                                                            {{ __('Sub Total :') }}
+                                                                        </div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <input type="tel"
+                                                                            class="form-control invoice-amount-input disabled-look"
+                                                                            placeholder="0" id="sub_amount"
+                                                                            name="sub_amount" readonly
+                                                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);">
+                                                                        <span class="text-danger d-block my-2"
+                                                                            id="sub_amount_error"></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="fw-semibold">
+                                                                            {{ __('Avail Discount(%) :') }}</div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <input type="tel"
+                                                                            class="form-control invoice-amount-input"
+                                                                            placeholder="0" id="avail_discount_amount"
+                                                                            name="avail_discount_amount"
+                                                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3); calculateAllTotals();"
+                                                                            maxlength="3">
+                                                                        <span class="text-danger d-block my-2"
+                                                                            id="avail_discount_amount_error"></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="fw-semibold">
+                                                                            {{ __('GST / VAT(%):') }}
+                                                                        </div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <input type="tel"
+                                                                            class="form-control invoice-amount-input disabled-look"
+                                                                            id="vat" name="vat" maxlength="10"
+                                                                            readonly placeholder="0"
+                                                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);,calculateAllTotals();">
+                                                                        <span class="text-danger d-block my-2"
+                                                                            id="vat_error"></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="fw-semibold">
+                                                                            {{ __('Advance Received:') }}</div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <input type="tel"
+                                                                            class="form-control invoice-amount-input"
+                                                                            id="advance_received" name="advance_received"
+                                                                            placeholder="0" maxlength="10"
+                                                                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9); calculateAllTotals();">
+                                                                        <span class="text-danger d-block my-2"
+                                                                            id="advance_received_error"></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="fs-14 fw-semibold">
+                                                                            {{ __('Total :') }}
+                                                                        </div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <input type="tel"
+                                                                            class="form-control invoice-amount-input disabled-look"
+                                                                            id="total" name="total" placeholder="0"
+                                                                            readonly>
+                                                                        <span class="text-danger d-block my-2"
+                                                                            id="total_error"></span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes Start -->
+                            <div class="col-xl-12">
+                                <label for="notes" class="form-label">{{ __('Additional Notes') }}</label>
+                                <textarea class="form-control" id="notes" name="notes" maxlength="250" rows="3"
+                                    placeholder="Additional Notes"></textarea>
+                                <span class="text-danger d-block my-2" id="notes_error"></span>
+                            </div>
+                            <!-- Notes End -->
+
+                            <!-- Terms & Conditions Start -->
+                            <div class="col-xl-12">
+                                <label for="terms" class="form-label">{{ __('Terms & Conditions') }}</label>
+                                <textarea class="form-control" id="terms" name="terms" maxlength="300" rows="3"
+                                    placeholder="Terms & Conditions"></textarea>
+                                <span class="text-danger d-block my-2" id="terms_error"></span>
+                            </div>
+                            <!-- Terms & Conditions End -->
+
+                            <!-- Signature Label -->
+                            <label class="form-label" for="signature">{{ __('Signature') }}
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <!-- Responsive Canvas Container -->
+                            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 10px;">
+                                <canvas id="signature-pad" style="width: 100%; height: 200px;"></canvas>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="mt-2">
+                                <button type="button" id="clear-signature" class="btn btn-primary">
+                                    {{ __('Clear') }}
+                                </button>
+                            </div>
+
+                            <!-- Hidden field to store base64 image -->
+                            <input class="form-control" type="hidden" name="signature_data" id="signature_data"
+                                required>
+                            <span class="text-danger" id="signature_error"></span>
+                        </div>
+                        <div class="card-footer text-end">
+                            <button class="btn btn-light me-1">
+                                <i class="ri-eye-line me-1 align-middle d-inline-block"></i>{{ __('Preview') }}
+                            </button>
+                            <button class="btn btn-primary">{{ __('Send Quotation') }}
+                                <i class="ri-send-plane-2-line ms-1 align-middle d-inline-block"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-12">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Mode Of Payment
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row gy-3">
+                                <div class="col-xl-12">
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
+                                        <label class="btn btn-outline-light mt-sm-0 mt-1" for="btnradio2">UPI</label>
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio11"
+                                            checked="">
+                                        <label class="btn btn-outline-light mt-sm-0 mt-1" for="btnradio11">Credit/Debit
+                                            Card</label>
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3"
+                                            checked="">
+                                        <label class="btn btn-outline-light mt-sm-0 mt-1" for="btnradio3">Digital
+                                            Wallet</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <input type="text" class="form-control" placeholder="Card Holder Name">
+                                </div>
+                                <div class="col-xl-12">
+                                    <input type="text" class="form-control" id="invoice-payment-cardname"
+                                        placeholder="Card Number" value="1234 5678 9087 XXXX">
+                                    <label for="invoice-payment-cardname" class="form-label mb-0"><a
+                                            class="text-danger fs-11" href="javascript:void(0);">Enter valid card
+                                            number*</a></label>
+                                </div>
+                                <div class="col-xl-12">
+                                    <input type="text" class="form-control mb-2" placeholder="CVV">
+                                </div>
+                                <div class="col-xl-12">
+                                    <input type="text" class="form-control mb-2" placeholder="Enter OTP">
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="alert alert-success" role="alert">
+                                        Please Make sure to pay the invoice bill within 30 days.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- End::app-content -->
+@endsection
+
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('input', '.item_name, .description, .unit_price, .qty_input', function() {
+            $('#item_warning_msg').hide();
+        });
+
+        $(document).on('input',
+            '#base_charges, #packing_charges, #loading_chargers, #transportation_charges, #insurance_amount, #unloading_charges, #discount, #gst',
+            function() {
+                calculateAllTotals();
+            });
+
+
+        var itemRowId = 1;
+
+        function addItemInputes() {
+            var isValid = true;
+            var lastRow = $('#item_table .item-row:last');
+
+
+            if (lastRow.length > 0) {
+                var itemName = lastRow.find('.item_name').val();
+                var description = lastRow.find('.description').val();
+                var unitPrice = lastRow.find('.unit_price').val();
+                var quantity = lastRow.find('.qty_input').val();
+
+                if (!itemName || !description || !unitPrice || !quantity) {
+                    $('#item_warning_msg').text("⚠️ Please fill all item details before adding a new one!").css({
+                        color: 'red',
+                        fontWeight: 'bold',
+                        marginTop: '10px'
+                    }).show();
+
+                    setTimeout(function() {
+                        $('#item_warning_msg').hide();
+                    }, 7000);
+                    return;
+                }
+            }
+
+            itemRowId++;
+            var newRow = `
+            <tr class="item-row" data-row="${itemRowId}">
+                <td>
+                    <input type="text" class="form-control item_name" name="item_name[]" maxlength="70" placeholder="Item Name">
+                    <span class="text-danger d-block my-2 item_name_error"></span>
+                </td>
+                <td>
+                    <textarea class="form-control description" name="item_description[]" maxlength="200" rows="1" placeholder="Description"></textarea>
+                    <span class="text-danger d-block my-2 item_description_error"></span>
+                </td>
+                <td>
+                    <input type="tel" class="form-control unit_price" name="unit_price[]" placeholder="Price"
+                     oninput="this.value = this.value.replace(/[^0-9]/g, ''); calculateAllTotals();" maxlength="10">
+                    <span class="text-danger d-block my-2 unit_price_error"></span>
+                </td>
+                <td class="invoice-quantity-container">
+                    <div class="input-group border rounded flex-nowrap">
+                        <button type="button"
+                            class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-minus">
+                            <i class="ri-subtract-line"></i>
+                        </button>
+                        <input type="text"
+                            class="form-control form-control-sm border-0 text-center w-100 qty_input disabled-look"
+                            data-row-id="${itemRowId}" value="1" readonly>
+                        <button type="button"
+                            class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-plus">
+                            <i class="ri-add-line"></i>
+                        </button>
+                    </div>
+                </td>
+                <td><input class="form-control total_item disabled-look" placeholder="0" type="text" value="0" readonly></td>
+                <td>
+                    <button class="btn btn-sm btn-icon btn-danger-light" onclick="removeRow(this)">
+                        <i class="ri-delete-bin-5-line"></i>
+                    </button>
+                </td>
+            </tr>
+            `;
+
+            var lastRow = $('#item_table .item-row:last');
+
+            if (lastRow.length) {
+                lastRow.after(newRow);
+            } else {
+                $('#item_table').prepend(newRow);
+            }
+            updateItemCount();
+        }
+
+        function updateItemCount() {
+            var count = $('#item_table .item-row').length;
+            $('#item-count').text(`(Items: ${count})`);
+        }
+
+        function removeRow(button) {
+            $(button).closest('tr').remove();
+            updateItemCount();
+        }
+
+        // Quantity PLUS
+        $(document).on('click', '.product-quantity-plus', function() {
+            let input = $(this).siblings('.qty_input');
+            let qty = parseInt(input.val()) || 1;
+            input.val(qty + 1);
+            calculateAllTotals();
+        });
+
+        // Quantity MINUS
+        $(document).on('click', '.product-quantity-minus', function() {
+            let input = $(this).siblings('.qty_input');
+            let qty = parseInt(input.val()) || 1;
+            if (qty > 1) input.val(qty - 1);
+            calculateAllTotals();
+        });
+
+        //Country Change On State
+        function loadLocations(id = null, targetSelector = null) {
+            var $target = $(targetSelector);
+            $target.html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: "{{ route('location.get') }}",
+                type: "post",
+                data: {
+                    id: id,
+                    type: targetSelector
+                },
+                success: function(response) {
+                    $target.html('<option value="">Select</option>');
+                    if (response.type == '#state' || response.type == '#move_from_state' || response.type ==
+                        '#move_to_state') {
+                        $.each(response.data, function(index, item) {
+                            $target.append(`<option value="${item.id}">${item.name}</option>`);
+                        });
+                    } else {
+                        $.each(response.data, function(index, item) {
+                            $target.append(`<option value="${item.id}">${item.name}</option>`);
+                        });
+                    }
+                }
+            });
+        }
+
+        function calculateAllTotals() {
+            var subTotal = 0;
+            $('#item_table .item-row').each(function() {
+                var unitPrice = $(this).find('.unit_price').val() || 0;
+                var quantity = $(this).find('.qty_input').val() || 0;
+                var rowTotal = unitPrice * quantity;
+                $(this).find('.total_item').val(rowTotal);
+                subTotal += rowTotal;
+            });
+
+            $('#sub_amount').val(subTotal);
+            var discountPercent = parseFloat($('#avail_discount_amount').val()) || 0;
+            var gstPercent = parseFloat($('#gst').val()) || 0;
+            $('#vat').val(gstPercent);
+            var advanceAmount = parseFloat($('#advance_received').val()) || 0;
+            var discountAmount = (discountPercent / 100) * subTotal;
+            var afterDiscount = subTotal - discountAmount;
+            var gstAmount = (gstPercent / 100) * afterDiscount;
+            var finalTotal = afterDiscount + gstAmount - advanceAmount;
+            $('#total').val(Math.round(finalTotal));
+
+            // Service Charges Calculation
+            var baseCharges = parseFloat($('#base_charges').val()) || 0;
+            var packingCharges = parseFloat($('#packing_charges').val()) || 0;
+            var loadingCharges = parseFloat($('#loading_chargers').val()) || 0;
+            var transportationCharges = parseFloat($('#transportation_charges').val()) || 0;
+            var insuranceAmount = parseFloat($('#insurance_amount').val()) || 0;
+            var unloadingCharges = parseFloat($('#unloading_charges').val()) || 0;
+            var serviceDiscount = parseFloat($('#discount').val()) || 0;
+            var serviceGSTPercent = parseFloat($('#gst').val()) || 0;
+
+            var serviceSubTotal = baseCharges + packingCharges + loadingCharges +
+                transportationCharges + insuranceAmount + unloadingCharges;
+
+            var serviceAfterDiscount = serviceSubTotal - serviceDiscount;
+            var serviceGSTAmount = (serviceGSTPercent / 100) * serviceAfterDiscount;
+            var serviceFinalAmount = Math.round(serviceAfterDiscount + serviceGSTAmount);
+
+            $('#servise_total').val(serviceFinalAmount);
+
+        }
+    </script>
+@endsection

@@ -84,4 +84,24 @@
             EOT;
         }
     }
+
+    if (!function_exists('getStatesByCountry')) {
+        function getStatesByCountry($countryId)
+        {
+            return DB::table('states')->where('country_id',$countryId)
+                                      ->select('id','name')
+                                      ->orderby('name')
+                                      ->get();
+        }
+    }
+
+    if (!function_exists('getCitiesByState')) {
+        function getCitiesByState($stateId)
+        {
+            return DB::table('cities')->where('state_id',$stateId)
+                                      ->select('id','name')
+                                      ->orderby('name')
+                                      ->get();
+        }
+    }
     

@@ -39,6 +39,24 @@
     <link href="{{ asset('assets/css/toaster.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: auto !important;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body>

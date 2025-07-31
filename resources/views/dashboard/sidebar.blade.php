@@ -39,7 +39,7 @@
                         </a>
                         <ul class="slide-menu child1">
                             <li class="slide">
-                                <a href="index.html" class="side-menu__item">{{ __('Overview') }}</a>
+                                <a href="{{ route('dashboard') }}" class="side-menu__item">{{ __('Overview') }}</a>
                             </li>
                             <li class="slide">
                                 <a href="index.html" class="side-menu__item">{{ __('Analytics') }}</a>
@@ -67,7 +67,8 @@
                                 <a href="cards.html" class="side-menu__item">{{ __('Quotation List') }}</a>
                             </li>
                             <li class="slide">
-                                <a href="#" class="side-menu__item">{{ __('Create Quotation') }}</a>
+                                <a href="{{ route('quotations.create') }}"
+                                    class="side-menu__item">{{ __('Create Quotation') }}</a>
                             </li>
                         </ul>
                     </li>
