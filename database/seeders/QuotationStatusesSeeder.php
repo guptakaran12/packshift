@@ -6,9 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class QuotationStatuseSeeder extends Seeder
+class QuotationStatusesSeeder extends Seeder
 {
-
     public function run(): void
     {
         $statuses = [

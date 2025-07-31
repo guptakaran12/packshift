@@ -19,16 +19,16 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
 
             // Master Dropdowns
-            ClientTypesTableSeeder::class,
-            QuotationStatusesTableSeeder::class,
-            ServiceTypesTableSeeder::class,
-            GoodsTypesTableSeeder::class,
-            MoveTypesTableSeeder::class,
-            VehicleTypesTableSeeder::class,
-            PickupFloorsTableSeeder::class,
-            LiftOptionsTableSeeder::class,
-            LabourCountsTableSeeder::class,
-            InsuranceOptionsTableSeeder::class,
+            ClientTypesSeeder::class,
+            QuotationStatusesSeeder::class,
+            ServiceTypesSeeder::class,
+            GoodsTypesSeeder::class,
+            MoveTypesSeeder::class,
+            VehicleTypesSeeder::class,
+            PickupFloorsSeeder::class,
+            LiftOptionsSeeder::class,
+            LabourCountsSeeder::class,
+            InsuranceOptionsSeeder::class,
         ]);
     }
 }
