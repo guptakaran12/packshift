@@ -13,9 +13,22 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            // Location Data
             CountrySeeder::class,
             StateSeeder::class,
             CitySeeder::class,
+
+            // Master Dropdowns
+            ClientTypesTableSeeder::class,
+            QuotationStatusesTableSeeder::class,
+            ServiceTypesTableSeeder::class,
+            GoodsTypesTableSeeder::class,
+            MoveTypesTableSeeder::class,
+            VehicleTypesTableSeeder::class,
+            PickupFloorsTableSeeder::class,
+            LiftOptionsTableSeeder::class,
+            LabourCountsTableSeeder::class,
+            InsuranceOptionsTableSeeder::class,
         ]);
     }
 }
