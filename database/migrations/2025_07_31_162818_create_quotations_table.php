@@ -32,7 +32,7 @@ return new class extends Migration
             $table->date('quotation_date');
             $table->date('valid_till');
             $table->uuid('quotation_status_id');
-            $table->timestamps();
+            $table->string('quotation_code');
 
             // Item Summary Fields
             $table->decimal('item_sub_total', 10, 2)->default(0);
@@ -40,6 +40,7 @@ return new class extends Migration
             $table->decimal('item_gst_percent', 5, 2)->nullable();
             $table->decimal('advance_received', 10, 2)->default(0);
             $table->decimal('grand_total', 10, 2)->default(0);
+            $table->timestamps();
         });
     }
 

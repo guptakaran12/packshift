@@ -25769,3 +25769,10 @@ body {
     justify-content: center;
     padding: 24px 0;
 }
+
+.disabled-look {
+    background-color: #e9ecef !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #6c757d;
+}

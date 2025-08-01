@@ -1,8 +1,10 @@
+window.signaturePad = null;
+
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('signature-pad');
-    if (!canvas) return; // exit if no canvas found
+    if (!canvas) return;
 
-    const signaturePad = new SignaturePad(canvas, {
+    window.signaturePad = new SignaturePad(canvas, {
         minWidth: 1,
         maxWidth: 2.5,
         penColor: "black",
@@ -10,37 +12,32 @@ document.addEventListener('DOMContentLoaded', function () {
         minDistance: 3
     });
 
-    // Resize canvas for mobile/desktop
     function resizeCanvas() {
         const ratio = Math.max(window.devicePixelRatio || 1, 1);
         canvas.width = canvas.offsetWidth * ratio;
         canvas.height = canvas.offsetHeight * ratio;
         canvas.getContext("2d").scale(ratio, ratio);
-        signaturePad.clear();
+        window.signaturePad.clear();// Optional
     }
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
     // Clear button
-    const clearBtn = document.getElementById('clear-signature');
+    const clearBtn = document.getElementById('clear_signature');
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
-            signaturePad.clear();
+            window.signaturePad.clear();
             document.getElementById('signature_data').value = '';
         });
     }
 
-    // Save on form submit
+    // Optional for normal submit
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', function (e) {
-            if (signaturePad.isEmpty()) {
-                e.preventDefault();
-                document.getElementById('signature_error').textContent = "Please provide your signature.";
-            } else {
-                document.getElementById('signature_error').textContent = "";
-                document.getElementById('signature_data').value = signaturePad.toDataURL("image/png");
+            if (window.signaturePad && !window.signaturePad.isEmpty()) {
+                document.getElementById('signature_data').value = window.signaturePad.toDataURL("image/png");
             }
         });
     }

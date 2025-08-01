@@ -32,6 +32,7 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
 
 Route::middleware(['auth','prevent-back-history'])->group(function () {
     Route::get('/quotations/create', [QuotationController::class, 'quotationCreatePage'])->name('quotations.create');
+    Route::post('/quotations/save', [QuotationController::class, 'saveQuotation'])->name('save.quotation');
     Route::post('/location/data/', [LocationController::class, 'get'])->name('location.get');
 });
 
