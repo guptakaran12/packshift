@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // Location Data
+            // Location Data    
             CountrySeeder::class,
             StateSeeder::class,
             CitySeeder::class,

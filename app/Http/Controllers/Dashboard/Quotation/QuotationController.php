@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Quotation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\QuotationRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,7 +46,8 @@ class QuotationController extends Controller
 
   public function saveQuotation(QuotationRequest $request)
   {
-    dd($request->all());
+      $validatedData = $request->validated();
+      DB::beginTransaction(); 
   }
   
 
