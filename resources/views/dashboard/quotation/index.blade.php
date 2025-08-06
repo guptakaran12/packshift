@@ -331,160 +331,182 @@
                                 <!-- Move To End -->
 
                                 <!-- Service Details: -->
-                                <p class="fw-bold mb-1">
-                                    {{ __('Service Details:') }}
-                                </p>
-                                <div class="col-xl-4 my-1">
+                                <div class="row gy-2">
+                                    <p class="fw-bold mb-1">
+                                        {{ __('Service Details:') }}
+                                    </p>
+
                                     <!-- Service Type Start: -->
-                                    <label for="service_type" class="form-label">{{ __('Service Type') }} <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-control " id="service_type" name="service_type">
-                                        <option value="">{{ __('Select Type') }}</option>
-                                        @foreach ($serviceTypes as $serviceType)
-                                            <option value="{{ $serviceType->id }}">
-                                                {{ $serviceType->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="service_type_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="service_type" class="form-label">{{ __('Service Type') }} <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control" id="service_type" name="service_type">
+                                            <option value="">{{ __('Select Type') }}</option>
+                                            @foreach ($serviceTypes as $serviceType)
+                                                <option value="{{ $serviceType->id }}">
+                                                    {{ $serviceType->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="service_type_error"></span>
+                                    </div>
                                     <!-- Service Type End: -->
 
                                     <!-- Shifting End Date Start : -->
-                                    <label for="shifting_end_date" class="form-label my-2">{{ __('Shifting End Date') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="date" class="form-control " id="shifting_end_date"
-                                        name="shifting_end_date">
-                                    <span class="text-danger d-block my-2" id="shifting_end_date_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="shifting_end_date" class="form-label">{{ __('Shifting End Date') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="date" class="form-control " id="shifting_end_date"
+                                            name="shifting_end_date">
+                                        <span class="text-danger d-block my-2" id="shifting_end_date_error"></span>
+                                    </div>
                                     <!-- Shifting End Date End : -->
 
                                     <!-- Goods Type Start: -->
-                                    <label for="goods_type" class="form-label">{{ __('Goods Type') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="goods_type" name="goods_type">
-                                        <option value="">{{ __('Select Goods Type') }}</option>
-                                        @foreach ($goodsTypes as $goodsType)
-                                            <option value="{{ $goodsType->id }}">
-                                                {{ $goodsType->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="goods_type_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="goods_type" class="form-label">{{ __('Goods Type') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" id="goods_type" name="goods_type">
+                                            <option value="">{{ __('Select Goods Type') }}</option>
+                                            @foreach ($goodsTypes as $goodsType)
+                                                <option value="{{ $goodsType->id }}">
+                                                    {{ $goodsType->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="goods_type_error"></span>
+                                    </div>
                                     <!-- Goods Type End: -->
 
                                     <!-- Shifting Distance Start: -->
-                                    <label for="shifting_distance"
-                                        class="form-label my-2">{{ __('Shifting Distance (in KM)') }}</label>
-                                    <input type="tel" class="form-control " id="shifting_distance"
-                                        name="shifting_distance" placeholder="e.g. 25"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="4">
-                                    <span class="text-danger d-block my-2" id="shifting_distance_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="shifting_distance"
+                                            class="form-label">{{ __('Shifting Distance (in KM)') }}</label>
+                                        <input type="tel" class="form-control " id="shifting_distance"
+                                            name="shifting_distance" placeholder="e.g. 25"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="4">
+                                        <span class="text-danger d-block my-2" id="shifting_distance_error"></span>
+                                    </div>
                                     <!-- Shifting Distance End: -->
-                                </div>
 
-                                <div class="col-xl-4 my-1">
+
                                     <!-- Move Type Start: -->
-                                    <label for="move_type" class="form-label">{{ __('Move Type') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="move_type" name="move_type">
-                                        <option value="">{{ __('Select Move Type') }}</option>
-                                        @foreach ($moveTypes as $moveType)
-                                            <option value="{{ $moveType->id }}">
-                                                {{ $moveType->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="move_type_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="move_type" class="form-label">{{ __('Move Type') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" id="move_type" name="move_type">
+                                            <option value="">{{ __('Select Move Type') }}</option>
+                                            @foreach ($moveTypes as $moveType)
+                                                <option value="{{ $moveType->id }}">
+                                                    {{ $moveType->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="move_type_error"></span>
+                                    </div>
                                     <!-- Move Type End: -->
 
                                     <!-- Vehicle Type Start: -->
-                                    <label for="vehicle_type" class="form-label my-2">{{ __('Vehicle Type') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="vehicle_type" name="vehicle_type">
-                                        <option value="">{{ __('Select Vehicle Type') }}</option>
-                                        @foreach ($vehicleTypes as $vehicleType)
-                                            <option value="{{ $vehicleType->id }}">
-                                                {{ $vehicleType->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="vehicle_type_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="vehicle_type" class="form-label">{{ __('Vehicle Type') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control " id="vehicle_type" name="vehicle_type">
+                                            <option value="">{{ __('Select Vehicle Type') }}</option>
+                                            @foreach ($vehicleTypes as $vehicleType)
+                                                <option value="{{ $vehicleType->id }}">
+                                                    {{ $vehicleType->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="vehicle_type_error"></span>
+                                    </div>
                                     <!-- Vehicle Type End: -->
 
                                     <!-- Pickup Floor Start: -->
-                                    <label for="pickup_floor" class="form-label ">{{ __('Pickup Floor') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="pickup_floor" name="pickup_floor">
-                                        <option value="">{{ __('Select Pickup Floor') }}</option>
-                                        @foreach ($pickupFloors as $pickupFloor)
-                                            <option value="{{ $pickupFloor->id }}">
-                                                {{ $pickupFloor->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="pickup_floor_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="pickup_floor" class="form-label">{{ __('Pickup Floor') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control " id="pickup_floor" name="pickup_floor">
+                                            <option value="">{{ __('Select Pickup Floor') }}</option>
+                                            @foreach ($pickupFloors as $pickupFloor)
+                                                <option value="{{ $pickupFloor->id }}">
+                                                    {{ $pickupFloor->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="pickup_floor_error"></span>
+                                    </div>
                                     <!-- Pickup Floor End: -->
 
                                     <!-- Insurance Start: -->
-                                    <label for="insurance" class="form-label my-2">{{ __('Is Insurance Required?') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="insurance" name="insurance">
-                                        <option value="">{{ __('Select Option') }}</option>
-                                        @foreach ($insuranceOptions as $insuranceOption)
-                                            <option value="{{ $insuranceOption->id }}">
-                                                {{ $insuranceOption->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="insurance_error"></span>
-                                    <!-- Insurance End: -->
-                                </div>
+                                    <div class="col-xl-4">
+                                        <label for="insurance" class="form-label">{{ __('Is Insurance Required?') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control " id="insurance" name="insurance">
+                                            <option value="">{{ __('Select Option') }}</option>
+                                            @foreach ($insuranceOptions as $insuranceOption)
+                                                <option value="{{ $insuranceOption->id }}">
+                                                    {{ $insuranceOption->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="insurance_error"></span>
+                                        <!-- Insurance End: -->
+                                    </div>
 
-                                <div class="col-xl-4 my-1">
                                     <!-- Shifting Start Date Start: -->
-                                    <label for="shifting_start_date" class="form-label">{{ __('Shifting Start Date') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="date" class="form-control " id="shifting_start_date"
-                                        name="shifting_start_date">
-                                    <span class="text-danger d-block my-2" id="shifting_start_date_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="shifting_start_date"
+                                            class="form-label">{{ __('Shifting Start Date') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="date" class="form-control " id="shifting_start_date"
+                                            name="shifting_start_date">
+                                        <span class="text-danger d-block my-2" id="shifting_start_date_error"></span>
+                                    </div>
                                     <!-- Shifting Start Date Start: -->
 
                                     <!-- Labour Count Start: -->
-                                    <label for="labour_count" class="form-label">{{ __('Labour Count') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="labour_count" name="labour_count">
-                                        <option value="">{{ __('Select Labour Count') }}</option>
-                                        @foreach ($labourCounts as $labourCount)
-                                            <option value="{{ $labourCount->id }}">
-                                                {{ $labourCount->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="labour_count_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="labour_count" class="form-label">{{ __('Labour Count') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control " id="labour_count" name="labour_count">
+                                            <option value="">{{ __('Select Labour Count') }}</option>
+                                            @foreach ($labourCounts as $labourCount)
+                                                <option value="{{ $labourCount->id }}">
+                                                    {{ $labourCount->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="labour_count_error"></span>
+                                    </div>
                                     <!-- Labour Count End: -->
 
                                     <!-- Pickup Lift Start: -->
-                                    <label for="pickup_lift" class="form-label my-2">{{ __('Pickup Lift Available') }}
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-control " id="pickup_lift" name="pickup_lift">
-                                        <option value="">{{ __('Select Pickup Lift') }}</option>
-                                        @foreach ($liftOptions as $liftOption)
-                                            <option value="{{ $liftOption->id }}">
-                                                {{ $liftOption->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger d-block my-2" id="pickup_lift_error"></span>
+                                    <div class="col-xl-4">
+                                        <label for="pickup_lift" class="form-label">{{ __('Pickup Lift Available') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control " id="pickup_lift" name="pickup_lift">
+                                            <option value="">{{ __('Select Pickup Lift') }}</option>
+                                            @foreach ($liftOptions as $liftOption)
+                                                <option value="{{ $liftOption->id }}">
+                                                    {{ $liftOption->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger d-block my-2" id="pickup_lift_error"></span>
+                                    </div>
                                     <!-- Pickup Lift End: -->
                                 </div>
+                                <!-- Service Details: -->
 
                                 <!-- Service Charges: -->
                                 <p class="fw-bold mb-1">
