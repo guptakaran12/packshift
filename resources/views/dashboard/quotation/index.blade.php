@@ -592,12 +592,12 @@
                                     <!--GST End: -->
 
                                     <!-- Servise Total Start: -->
-                                    <label for="servise_total"
+                                    <label for="service_total"
                                         class="form-label my-2">{{ __('Servise Total Amount') }}</label>
-                                    <input type="tel" class="form-control " id="servise_total" name="servise_total"
+                                    <input type="tel" class="form-control " id="service_total" name="service_total"
                                         placeholder="Servise Total"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '')" readonly>
-                                    <span class="text-danger d-block my-2" id="servise_total_error"></span>
+                                    <span class="text-danger d-block my-2" id="service_total_error"></span>
                                     <!--Servise Total End: -->
                                 </div>
 
@@ -650,7 +650,8 @@
                                                             </button>
                                                             <input type="text"
                                                                 class="form-control form-control-sm -0 text-center w-100 qty_input disabled-look"
-                                                                aria-label="quantity" value="1" readonly>
+                                                                aria-label="quantity" value="1" readonly
+                                                                name="quantity[]" id="quantity[]">
                                                             <!-- Plus Button -->
                                                             <button
                                                                 class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-plus"
@@ -960,7 +961,7 @@
                         </button>
                         <input type="text"
                             class="form-control form-control-sm -0 text-center w-100 qty_input disabled-look"
-                            data-row-id="${itemRowId}" value="1" readonly>
+                            data-row-id="${itemRowId}" value="1" readonly name="quantity[]" id="quantity[]">
                         <button type="button"
                             class="btn btn-icon btn-primary input-group-text flex-fill product-quantity-plus">
                             <i class="ri-add-line" name="quantity"></i>

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
 
             //Quotation Details:
+            $table->string('quotation_title');
             $table->string('quotation_purpose');
             $table->string('salesperson_name');
             $table->date('quotation_date');
