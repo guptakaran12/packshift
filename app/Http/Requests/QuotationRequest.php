@@ -66,7 +66,7 @@ class QuotationRequest extends FormRequest
             'insurance_amount'          => 'nullable|numeric|min:0',
             'loading_chargers'          => 'nullable|numeric|min:0',
             'gst'                       => 'required|numeric|min:0',
-            'servise_total'             => 'nullable|numeric|min:0',
+            'service_total'             => 'nullable|numeric|min:0',
 
             // Items (array-based validation)
             'item_name'         => 'required|array|min:1',
@@ -77,6 +77,7 @@ class QuotationRequest extends FormRequest
             'unit_price.*'      => 'required|numeric|min:0',
             'quantity'          => 'required|array|min:1',
             'quantity.*'        => 'required|numeric|min:1',
+            'total_item'       =>  'nullable|numeric|min:0',
 
             // Totals
             'sub_amount'             => 'nullable|numeric|min:0',

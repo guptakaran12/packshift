@@ -596,7 +596,7 @@
                                         class="form-label my-2">{{ __('Servise Total Amount') }}</label>
                                     <input type="tel" class="form-control " id="service_total" name="service_total"
                                         placeholder="Servise Total"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" readonly>
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                     <span class="text-danger d-block my-2" id="service_total_error"></span>
                                     <!--Servise Total End: -->
                                 </div>

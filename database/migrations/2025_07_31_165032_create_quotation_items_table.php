@@ -13,11 +13,7 @@ return new class extends Migration
 
             $table->id();
             $table->uuid('quotation_id');
-            $table->string('item_name');
-            $table->text('description')->nullable();
-            $table->decimal('unit_price', 10, 2);
-            $table->integer('quantity');
-            $table->decimal('total', 10, 2);
+            $table->json('items_json');
             $table->timestamps();
         });
     }
