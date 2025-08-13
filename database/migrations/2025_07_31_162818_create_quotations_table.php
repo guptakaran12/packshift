@@ -12,7 +12,7 @@ return new class extends Migration
 
             //General Details:
             $table->id();
-            $table->uuid('user_id');
+            $table->uuid('user_id')->index();
             $table->string('customer_name');
             $table->string('customer_phone');
             $table->string('customer_gst')->nullable();
@@ -30,17 +30,17 @@ return new class extends Migration
             $table->string('quotation_title');
             $table->string('quotation_purpose');
             $table->string('salesperson_name');
-            $table->date('quotation_date');
+            $table->date('quotation_date')->index();
             $table->date('valid_till');
-            $table->uuid('quotation_status_id');
-            $table->string('quotation_code');
+            $table->uuid('quotation_status_id')->index();
+            $table->string('quotation_code')->unique();
 
             // Item Summary Fields
             $table->decimal('item_sub_total', 10, 2)->default(0);
             $table->decimal('item_discount_percent', 5, 2)->nullable();
             $table->decimal('item_gst_percent', 5, 2)->nullable();
             $table->decimal('advance_received', 10, 2)->default(0);
-            $table->decimal('grand_total', 10, 2)->default(0);
+            $table->decimal('grand_total', 10, 2)->default(0)->index();
             $table->timestamps();
         });
     }

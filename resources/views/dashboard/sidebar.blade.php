@@ -64,7 +64,8 @@
                         </a>
                         <ul class="slide-menu child1">
                             <li class="slide">
-                                <a href="cards.html" class="side-menu__item">{{ __('Quotation List') }}</a>
+                                <a href="{{ route('quotations.index') }}"
+                                    class="side-menu__item">{{ __('Quotations List') }}</a>
                             </li>
                             <li class="slide">
                                 <a href="{{ route('quotations.create') }}"
