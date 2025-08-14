@@ -41,6 +41,7 @@ return new class extends Migration
             $table->decimal('item_gst_percent', 5, 2)->nullable();
             $table->decimal('advance_received', 10, 2)->default(0);
             $table->decimal('grand_total', 10, 2)->default(0)->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

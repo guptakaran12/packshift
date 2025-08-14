@@ -34,6 +34,7 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotations.index');
     Route::get('/quotations/create', [QuotationController::class, 'quotationCreatePage'])->name('quotations.create');
     Route::post('/quotations/save', [QuotationController::class, 'saveQuotation'])->name('save.quotation');
+    Route::delete('/quotations/delete/', [QuotationController::class, 'deleteQuotation'])->name('delete.quotation');
     Route::post('/location/data/', [LocationController::class, 'get'])->name('location.get');
 });
 

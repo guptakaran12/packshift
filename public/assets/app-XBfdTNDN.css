@@ -25776,3 +25776,52 @@ body {
     pointer-events: none;
     color: #6c757d;
 }
+
+/* chips */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: .25rem .5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: .75rem;
+    line-height: 1;
+    border: 1px solid transparent
+}
+
+/* variants */
+.chip-draft {
+    background: #f1f5f9;
+    color: #334155;
+    border-color: #e2e8f0;
+}
+
+/* gray */
+.chip-sent {
+    background: #e6f4ff;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+
+/* blue */
+.chip-accepted {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+}
+
+/* green */
+.chip-rejected {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+/* red */
+.chip-expired {
+    background: #fef3c7;
+    color: #b45309;
+    border-color: #fde68a;
+}
+
+/* amber */

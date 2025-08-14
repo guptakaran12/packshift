@@ -250,7 +250,7 @@
         <!-- End::main-footer -->
     </div>
     <!-- End Page -->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <script src="{{ asset('assets/js/toaster.js') }}"></script>
     <script src="{{ asset('assets/js/signature.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>

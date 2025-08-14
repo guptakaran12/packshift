@@ -226,47 +226,59 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse()
-                                        <tr class="invoice-list">
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2 lh-1">
-                                                        <span class="avatar avatar-sm avatar-rounded">
-                                                            <img src="build/assets/images/faces/11.jpg" alt="">
-                                                        </span>
+                                        @forelse($quotationLists as $quotationList)
+                                            <tr class="invoice-list">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="me-2 lh-1">
+                                                            <span class="avatar avatar-sm avatar-rounded">
+                                                                <img src="{{ asset('images/logo3.png') }}" alt=""
+                                                                    class="img-fluid">
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-0 fw-semibold">
+                                                                {{ isset($quotationList->customer_name) ? $quotationList->customer_name : '' }}
+                                                            </p>
+                                                            <p class="mb-0 fs-11 text-muted">
+                                                                {{ isset($quotationList->customer_email) ? $quotationList->customer_email : '' }}
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <p class="mb-0 fw-semibold">Json Taylor</p>
-                                                        <p class="mb-0 fs-11 text-muted">jsontaylor2416@gmail.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="javascript:void(0);" class="fw-semibold text-primary">
-                                                    #SPK12032901
-                                                </a>
-                                            </td>
-                                            <td>
-                                                25,Nov 2022
-                                            </td>
-                                            <td>
-                                                $212.45
-                                            </td>
-                                            <td>
-                                                <span class="badge bg-success-transparent">Paid</span>
-                                            </td>
-                                            <td>
-                                                25,Dec 2022
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-primary-light btn-icon btn-sm"><i
-                                                        class="ri-printer-line"></i></button>
-                                                <button class="btn btn-danger-light btn-icon ms-1 btn-sm invoice-btn"><i
-                                                        class="ri-delete-bin-5-line"></i></button>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="fw-semibold text-primary">
+                                                        #{{ isset($quotationList->quotation_code) ? $quotationList->quotation_code : '' }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{ isset($quotationList->quotation_date) ? \Carbon\Carbon::parse($quotationList->quotation_date)->format('d,M Y') : '' }}
+                                                </td>
+                                                <td>
+                                                    {{ isset($quotationList->grand_total) ? $quotationList->grand_total : '' }}
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="{{ isset($quotationList->status_class) ? $quotationList->status_class : '' }}">{{ isset($quotationList->quotation_status_name) ? $quotationList->quotation_status_name : '' }}</span>
+                                                </td>
+                                                <td>
+                                                    {{ isset($quotationList->valid_till) ? \Carbon\Carbon::parse($quotationList->valid_till)->format('d,M Y') : '' }}
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary-light btn-icon btn-sm"><i
+                                                            class="ri-printer-line"></i></button>
+                                                    <button class="btn btn-danger-light btn-icon ms-1 btn-sm"
+                                                        onclick="deleteQuotation({{ isset($quotationList->id) ? $quotationList->id : null }});">
+                                                        <i class="ri-delete-bin-5-line"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @empty
-                                        @
+                                            <td colspan="7" class="text-center text-muted fw-semibold py-4">
+                                                <i class="ri-information-line fs-5 me-1 align-middle"></i>
+                                                <span class="align-middle">{{ __('No Quotation Found') }}</span>
+                                            </td>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -293,8 +305,40 @@
         </div>
     </div>
     <!-- End::app-content -->
+    {!! ajaxErrorHandlerScript() !!}
 @endsection
 
 @section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        function deleteQuotation(id) {
+            $.ajax({
+                url: "{{ route('delete.quotation') }}",
+                type: "DELETE",
+                data: {
+                    quotation_id: id
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status) {
+                        new Toast({
+                            title: response.message || "Quotation deleted successfully!",
+                            type: "success",
+                            position: "top-center"
+                        }).show();
+                    }
+                },
+                error: function(xhr) {
+                    handleAjaxError(xhr, {
+                        fallbackMessage: 'Quotation deleted failed.'
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

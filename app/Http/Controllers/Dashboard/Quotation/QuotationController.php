@@ -7,15 +7,27 @@
   use App\Models\Models\Quotation\Quotation;
   use Illuminate\Support\Facades\Storage;
   use Illuminate\Support\Facades\DB;
+  use Illuminate\Http\Request;
   use Exception;
   class QuotationController extends Controller
   {
       public function index()
       {
         $quotationLists = [];
-        $quotationLists = DB::table('quotations')->where('user_id',Auth::id())->select('customer_name','quotation_code','quotation_date','grand_total','quotation_status_id','valid_till')->orderByDesc('quotation_date')->get();
+        $quotationLists = DB::table('quotations')->where('user_id',Auth::id())->join('quotation_statuses','quotations.quotation_status_id','=','quotation_statuses.id')->select('quotations.id','customer_name','customer_email','quotation_code','quotation_date','grand_total','valid_till','quotation_statuses.name as quotation_status_name',
+        DB::raw("
+          CASE quotation_statuses.name
+            WHEN 'Draft'     THEN 'chip chip-draft'
+            WHEN 'Sent'      THEN 'chip chip-sent'
+            WHEN 'Accepted'  THEN 'chip chip-accepted'
+            WHEN 'Rejected'  THEN 'chip chip-rejected'
+            WHEN 'Expired'   THEN 'chip chip-expired'
+            END as status_class
+        ")
+        )->orderByDesc('quotation_date')->get();
         return view('dashboard.quotation.index',compact('quotationLists'));
       }
+
       public function quotationCreatePage()
       {
         $userId = Auth::id();
@@ -174,4 +186,28 @@
             return response()->json(['status' => false, 'msg' => 'Something Went failed!', 'error' => $e->getMessage()],500);
           }
       }
+
+      public function deleteQuotation(Request $request)
+      {
+        $validated = $request->validate([
+            'quotation_id' => 'required|integer|exists:quotations,id',
+        ]);
+        
+        try {
+          $quotation = Quotation::findOrFail($validated['quotation_id']);
+          $quotation->delete();
+  
+         // Flash message
+        session()->flash('toastMessage', [
+            'message' => 'Quotation deleted successfully!',
+            'type' => 'success',
+            'position' => 'top-center',
+        ]);
+
+        return response()->json(['status' => true, 'message' =>'Quotation Deleted Successfully!'],200);
+  
+      } catch (Exception $e) {
+        return response()->json(['status' => false, 'msg' => 'Quotation Delete failed!', 'error' => $e->getMessage()],500);
+      }
   }
+}
